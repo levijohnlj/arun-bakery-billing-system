@@ -7,7 +7,7 @@ const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string | und
 const isValidUrl = SUPABASE_URL && SUPABASE_ANON_KEY && /^https?:\/\/.+/.test(SUPABASE_URL);
 
 if (!isValidUrl) {
-    console.warn('Supabase not configured. Please set VITE_SUPABASE_URL (must be a valid HTTP/HTTPS URL) and VITE_SUPABASE_ANON_KEY in your .env file.');
+    console.warn('Supabase not configured. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your .env file.');
 }
 
 let _supabase: SupabaseClient | null = null;
