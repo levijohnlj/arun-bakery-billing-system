@@ -3,11 +3,13 @@ import { Product, SaleRecord, DailyStat } from '../types';
 
 let genAI: GoogleGenAI | null = null;
 
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+
 try {
-  if (process.env.API_KEY) {
-    genAI = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  if (GEMINI_API_KEY) {
+    genAI = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
   } else {
-    console.warn("Gemini API Key missing. AI features will be disabled.");
+    console.warn("Gemini API Key missing (VITE_GEMINI_API_KEY). AI features will be disabled.");
   }
 } catch (error) {
   console.error("Failed to initialize Gemini:", error);
