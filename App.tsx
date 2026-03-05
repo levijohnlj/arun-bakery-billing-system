@@ -21,6 +21,7 @@ import Dashboard from './components/Dashboard';
 import Billing from './components/Billing';
 import Inventory from './components/Inventory';
 import Customers from './components/Customers';
+import Layout from "./components/Layout";
 
 import { Lock, User, Loader2 } from 'lucide-react';
 
