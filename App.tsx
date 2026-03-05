@@ -16,7 +16,7 @@ import {
 import { ViewState, Product, SaleRecord, CartItem, Customer, DailyStat } from './types';
 import { MOCK_DAILY_STATS } from './constants';
 
-import Layout from './components/AppLayout';
+
 import Dashboard from './components/Dashboard';
 import Billing from './components/Billing';
 import Inventory from './components/Inventory';
