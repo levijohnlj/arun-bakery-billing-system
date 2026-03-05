@@ -12,7 +12,7 @@ import {
   deleteProduct as apiDeleteProduct,
   addCustomer as apiAddCustomer,
   createSale as apiCreateSale
-} from './services/supabaseClient';
+} from './services/supabaseService';
 import { ViewState, Product, SaleRecord, CartItem, Customer, DailyStat } from './types';
 import { MOCK_DAILY_STATS } from './constants';
 
