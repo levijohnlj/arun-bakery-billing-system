@@ -15,7 +15,7 @@ import {
 } from './services/supabaseService';
 import { ViewState, Product, SaleRecord, CartItem, Customer, DailyStat } from './types';
 import { MOCK_DAILY_STATS } from './constants';
-
+import { Analytics } from '@vercel/analytics/react';
 
 import Dashboard from './components/Dashboard';
 import Billing from './components/Billing';
@@ -251,45 +251,48 @@ const App: React.FC = () => {
   }
 
   return (
-    <Layout
-      currentView={currentView}
-      onChangeView={setCurrentView}
-      onLogout={async () => {
-        try {
-          if (supabase) await supabaseSignOut();
-        } catch (err) {
-          console.warn('Supabase sign-out failed:', err);
-        }
-        setIsLoggedIn(false);
-      }}
-      notificationCount={notificationCount}
-    >
-      {currentView === ViewState.DASHBOARD && (
-        <Dashboard sales={sales} products={products} dailyStats={MOCK_DAILY_STATS} />
-      )}
-      {currentView === ViewState.BILLING && (
-        <Billing
-          products={products}
-          customers={customers}
-          onCompleteSale={handleCompleteSale}
-        />
-      )}
-      {currentView === ViewState.CUSTOMERS && (
-        <Customers
-          customers={customers}
-          sales={sales}
-          onAddCustomer={handleAddCustomer}
-        />
-      )}
-      {currentView === ViewState.INVENTORY && (
-        <Inventory
-          products={products}
-          onAddProduct={handleAddProduct}
-          onUpdateProduct={handleUpdateProduct}
-          onDeleteProduct={handleDeleteProduct}
-        />
-      )}
-    </Layout>
+    <>
+      <Layout
+        currentView={currentView}
+        onChangeView={setCurrentView}
+        onLogout={async () => {
+          try {
+            if (supabase) await supabaseSignOut();
+          } catch (err) {
+            console.warn('Supabase sign-out failed:', err);
+          }
+          setIsLoggedIn(false);
+        }}
+        notificationCount={notificationCount}
+      >
+        {currentView === ViewState.DASHBOARD && (
+          <Dashboard sales={sales} products={products} dailyStats={MOCK_DAILY_STATS} />
+        )}
+        {currentView === ViewState.BILLING && (
+          <Billing
+            products={products}
+            customers={customers}
+            onCompleteSale={handleCompleteSale}
+          />
+        )}
+        {currentView === ViewState.CUSTOMERS && (
+          <Customers
+            customers={customers}
+            sales={sales}
+            onAddCustomer={handleAddCustomer}
+          />
+        )}
+        {currentView === ViewState.INVENTORY && (
+          <Inventory
+            products={products}
+            onAddProduct={handleAddProduct}
+            onUpdateProduct={handleUpdateProduct}
+            onDeleteProduct={handleDeleteProduct}
+          />
+        )}
+      </Layout>
+      <Analytics />
+    </>
   );
 };
 
